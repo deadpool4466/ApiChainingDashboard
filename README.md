@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+API Chaining Dashboard
+Overview
+This is a responsive web application built using React.js and Tailwind CSS that demonstrates API chaining functionality. The app allows the user to fetch data from multiple APIs (both GET and POST requests) and chains the responses from one API to be used as parameters for subsequent API calls. It is a demonstration of API handling, state management, data transformation, and error handling.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Table of Contents
+Setup Instructions
+Approach
+Assumptions & Decisions
+Completed Features
+Known Issues
+Setup Instructions
+Prerequisites
+Node.js (v14 or higher)
+NPM (v6 or higher)
+Steps
+Clone the repository:
 
-## Available Scripts
+bash
+Copy code
+git clone https://github.com/your-username/api-chaining-dashboard.git
+cd api-chaining-dashboard
+Install dependencies:
 
-In the project directory, you can run:
+bash
+Copy code
+npm install
+Start the development server:
 
-### `npm start`
+bash
+Copy code
+npm start
+Open the app in your browser: Navigate to http://localhost:3000 to see the application in action.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Approach
+API Chaining Logic
+The app demonstrates API chaining by first fetching data from the Get Users List API, then using the response from that API (specifically the userId) to make a Create New Post request. After creating the post, the postId from the created post is used to fetch comments for the post from another API.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Get Users List (GET): Fetches a list of users and displays them in a dropdown.
+Create New Post (POST): Uses the selected userId to create a new post with custom input for the title and body.
+Get Comments by Post (GET): Fetches comments for the newly created post using the postId.
+UI and State Management
+The app is structured with React functional components.
+State management is handled using the useState hook to manage API data such as users, post creation, and comments.
+Each API call is executed asynchronously using axios and is tied to user interaction (button clicks).
+Error Handling
+The app has basic error handling for failed API requests.
+If any API request fails, an error message is displayed in the UI.
+Styling
+Tailwind CSS is used for a responsive and modern layout.
+Buttons and input fields are styled using Tailwind classes for quick, consistent design across the app.
+Assumptions & Decisions
+User Selection: Assumes the user must select a user from the list before proceeding to create a post.
+API Flow: The flow is linear: first fetching the user list, then creating a post, and finally fetching comments related to the post.
+API Response Use: The selected userId from the first API response is directly used in the POST request for creating a new post. Similarly, the postId from the post response is used to fetch comments.
+Hardcoded API Endpoints: The API endpoints are fixed in the code. Custom APIs are not supported in the current version.
+Completed Features
+Chained API Calls: Successfully implemented API chaining, where data from one API is used as input for the next.
+GET and POST Request Handling: Correctly handles both GET and POST requests, with user inputs tied to API calls.
+Responsive UI: The UI is fully responsive using Tailwind CSS.
+State Management: Managed component state with useState to handle API responses and user input.
+Basic Error Handling: Error messages are displayed if any API request fails.
+Known Issues
+Minimal Error Handling: Error handling could be enhanced to provide more detailed feedback (e.g., showing which step in the chaining failed).
+Limited Flexibility: Currently, only three APIs are chained in a specific sequence. Future iterations could allow for more flexible chaining with a variety of APIs.
+Hardcoded Endpoints: The API URLs are static. Extending the app to allow users to input their own API URLs and parameters would increase flexibility.
